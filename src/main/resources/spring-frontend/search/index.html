@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="/assets/css/extra.min.css?v=33498857"><!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script defer src="/assets/js/scripts.min.js?v=33498857"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script th:replace="~{fragments/lang_fragment :: langFragment}"></script>
 </head>
 <body class="Site">
   <!--if lt IE 8
@@ -43,20 +45,21 @@
   <div class="Middle Middle_search">
     <div class="wrap">
       <main class="Middle-main">
-        <h1 class="Middle-title">Поиск
+        <h1 class="Middle-title" th:text="#{search.button}">Поиск
         </h1>
         <div class="Section">
           <div class="search">
-            <form class="form form_search" action="#" method="get" data-searchlimit="20" >
-              <input class="search-input" id="querypage" name="querypage" type="text" placeholder="Search over 30 million book titles" value="Техника" th:name="parameter"/>
-              <button class="search-button" type="submit" name="searchpage" id="searchpage">Поиск
+            <form class="form form_search" method="get" data-searchlimit="20" th:action="@{/search}">
+              <input class="search-input" id="querypage" name="querypage" type="text" placeholder="Search over 30 million book titles" th:name="query"/>
+              <button class="search-button" type="submit" id="searchpage" th:text="#{search.button}">Поиск
               </button>
             </form>
+            <div class="error" th:if="${searchError}" th:utext="${searchError}"/>
           </div>
         </div>
         <div class="Section Section_close">
           <header class="Section-header">
-            <h2 class="Section-title Middle-searchHeader" th:text="'Найдено ' + ${#lists.size(filteredBookList)} + ' книг'">Найдено 40 книг
+            <h2 class="Section-title Middle-searchHeader" th:text="${count > 0}  ? ${countMessage} : 'По вашему запросу книги не найдены'">Найдено 40 книг
             </h2>
           </header>
           <div class="Cards Cards_search Cards_refresh">
@@ -332,7 +335,7 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--            </div>-->
-            <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#" data-refreshshow="search" data-refreshoffset="20" data-refreshlimit="20" data-refreshquery="Техника">Показать еще</a>
+            <div class="Cards-footer Cards-footer_center" th:if="${count > 20}"><a class="btn btn_primary" href="#" data-refreshshow="search" data-refreshoffset="20" data-refreshlimit="20" data-refreshquery="Техника" th:text="#{button.showmore}">Показать еще</a>
             </div>
           </div>
         </div>

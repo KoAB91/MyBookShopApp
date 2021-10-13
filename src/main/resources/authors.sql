@@ -1023,3 +1023,4 @@ insert into authors (id, first_name, last_name) values (1022, 'Lindsay', 'Coutth
 insert into authors (id, first_name, last_name) values (1023, 'Helyn', 'Schneidar');
 insert into authors (id, first_name, last_name) values (1024, 'Bette-ann', 'Askem');
 insert into authors (id, first_name, last_name) values (1025, 'Dom', 'Robuchon');
+insert into authors (id, first_name, last_name) values (1026, 'Fedor', 'Dostoevskiy');

@@ -23,3 +23,7 @@ insert into books (authorId, title, priceOld, price) values (SELECT id from auth
 insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Helyn' AND last_name = 'Schneidar', 'utilize magnetic supply-chains', '$279.70', '$77.86');
 insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Bette-ann' AND last_name = 'Askem', 'e-enable dot-com supply-chains', '$297.83', '$110.15');
 insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Dom' AND last_name = 'Robuchon', 'facilitate efficient eyeballs', '$232.30', '$131.48');
+insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Fedor' AND last_name = 'Dostoevskiy', 'Idiot', '$232.30', '$131.48');
+insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Fedor' AND last_name = 'Dostoevskiy', 'Besy', '$232.30', '$131.48');
+insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Fedor' AND last_name = 'Dostoevskiy', 'PiN', '$232.30', '$131.48');
+insert into books (authorId, title, priceOld, price) values (SELECT id from authors WHERE first_name = 'Fedor' AND last_name = 'Dostoevskiy', 'BK', '$232.30', '$131.48');

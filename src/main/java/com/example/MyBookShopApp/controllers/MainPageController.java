@@ -5,11 +5,11 @@ import com.example.MyBookShopApp.dto.BookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -58,8 +58,26 @@ public class MainPageController {
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam(value = "query") String query, Model model){
-        model.addAttribute("filteredBookList", bookService.getBooksData());
+    public String search(@RequestParam(value = "query", required = false) String query, Model model){
+        System.out.println(query);
+        if (query!=null && !query.isEmpty()){
+            List<BookDTO> books = bookService.getFilteredBooksData(query);
+            int count = books.size();
+            model.addAttribute("filteredBookList", books);
+            model.addAttribute("count", count);
+            if(count==1){
+                model.addAttribute("countMessage", "Найдена 1 книга");
+            }else if((count>5 & count<21) || count%10==0 || Arrays.asList("5", "6", "7", "8", "9").contains(String.valueOf(count).substring(String.valueOf(count).length()-1))){
+                model.addAttribute("countMessage", "Найдено " + count + " книг");
+            }else if (String.valueOf(count).substring(String.valueOf(count).length()-1).equals("1")){
+                model.addAttribute("countMessage", "Найдено " + count + " книга");
+            }else if ((count>1 & count<5) || Arrays.asList("2", "3", "4").contains(String.valueOf(count).substring(String.valueOf(count).length()-1))){
+                model.addAttribute("countMessage", "Найдено " + count + " книги");
+            }
+        } else {
+            model.addAttribute("searchError", "Поисковый запрос не задан");
+            return "/index";
+        }
         return "/search/index";
     }
 }
