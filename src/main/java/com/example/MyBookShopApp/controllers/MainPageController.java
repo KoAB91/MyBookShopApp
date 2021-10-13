@@ -5,6 +5,7 @@ import com.example.MyBookShopApp.dto.BookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +58,7 @@ public class MainPageController {
     }
 
     @GetMapping("/search")
-    public String searchBooks(@RequestParam("query") String query, Model model){
+    public String search(@RequestParam(value = "query") String query, Model model){
         model.addAttribute("filteredBookList", bookService.getBooksData());
         return "/search/index";
     }
