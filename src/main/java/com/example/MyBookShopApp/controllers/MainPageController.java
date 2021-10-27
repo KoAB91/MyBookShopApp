@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.BookService;
-import com.example.MyBookShopApp.dto.BookDTO;
+import com.example.MyBookShopApp.data.Book;
+import com.example.MyBookShopApp.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ public class MainPageController {
     }
 
     @ModelAttribute("recommendedBooks")
-    public List<BookDTO> recommendedBooks(){
+    public List<Book> recommendedBooks(){
         return bookService.getBooksData();
     }
 
@@ -61,7 +61,7 @@ public class MainPageController {
     public String search(@RequestParam(value = "query", required = false) String query, Model model){
         System.out.println(query);
         if (query!=null && !query.isEmpty()){
-            List<BookDTO> books = bookService.getFilteredBooksData(query);
+            List<Book> books = bookService.getFilteredBooksData(query);
             int count = books.size();
             model.addAttribute("filteredBookList", books);
             model.addAttribute("count", count);

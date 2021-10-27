@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.BookService;
-import com.example.MyBookShopApp.dto.BookDTO;
+import com.example.MyBookShopApp.data.Book;
+import com.example.MyBookShopApp.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ public class BookController {
     }
 
     @ModelAttribute("recentBooks")
-    public List<BookDTO> recentBooks(){
+    public List<Book> recentBooks(){
         return bookService.getBooksData();
     }
 
@@ -32,7 +32,7 @@ public class BookController {
     }
 
     @ModelAttribute("popularBooks")
-    public List<BookDTO> popularBooks(){
+    public List<Book> popularBooks(){
         return bookService.getBooksData();
     }
 
